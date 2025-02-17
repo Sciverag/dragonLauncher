@@ -1,0 +1,69 @@
+.loginContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.582);
+    width: 50%;
+    padding: 1%;
+    border: solid 3px whitesmoke;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 5px black;
+    animation: loginSpawn 0.5s ease;
+}
+
+.loginContainer > img {
+    width: 10vw;
+    filter: brightness(1000%);
+}
+
+.loginContainer > h1 {
+    font-family: "Sigmar", serif;
+    color: rgb(161, 36, 36);
+    letter-spacing: 6px;
+    text-shadow: 1px 1px 0 whitesmoke,
+    1px -1px 0 whitesmoke,
+    -1px 1px 0 whitesmoke,
+    -1px -1px 0 whitesmoke;
+}
+
+.loginContainer > p {
+    color: gainsboro;
+    font-weight: bolder;
+    margin-bottom: 5%;
+}
+
+.loginContainer > button {
+    cursor: pointer;
+    padding: 1%;
+    font-size: large;
+    font-family: "Sigmar", serif;
+    width: 50%;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.2s;
+}
+
+.loginContainer > button:hover {
+    background-color: rgb(216, 60, 60);
+    color: whitesmoke;
+    scale: 103%;
+    box-shadow: 0 10px 5px black;
+}
+
+@keyframes loginSpawn {
+    0% {
+        scale: 0.2;
+        opacity: 0;
+    }
+
+    80% {
+        scale: 1.2;
+        opacity: 1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
