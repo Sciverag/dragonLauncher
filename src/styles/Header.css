@@ -1,0 +1,43 @@
+header {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.486);
+    box-shadow: 0 0 5px black;
+    display: flex;
+    padding: 1%;
+    backdrop-filter: blur(4px);
+    justify-content: space-between;
+    border-bottom: solid 2px whitesmoke;
+    transform: translateY(-70%);
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+header:hover {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+header > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    border: solid 2px whitesmoke;
+}
+
+header > button {
+    width: 10%;
+    margin-right: 3%;
+    cursor: pointer;
+    font-size: medium;
+    font-family: "Sigmar", serif;
+    border-radius: 10px;
+    border: none;
+    transition: all 0.2s;
+}
+
+header > button:hover {
+    background-color: rgb(216, 60, 60);
+    color: whitesmoke;
+    scale: 103%;
+    box-shadow: 0 10px 5px black;
+}

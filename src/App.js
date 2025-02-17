@@ -1,6 +1,7 @@
 import './App.css';
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from './components/loginButon';
+import LoginButton from './components/LoginButon';
+import Header from './components/Header';
 
 function App() {
 
@@ -9,7 +10,9 @@ function App() {
   return (
     <>
       <main>
-        {isAuthenticated ? (<></>) : (<LoginButton/>)}
+        {isAuthenticated ? (<>
+        <Header/>
+        </>) : (<LoginButton/>)}
       </main>
 
       <div id="background"></div>

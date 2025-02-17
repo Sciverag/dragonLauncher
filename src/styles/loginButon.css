@@ -45,6 +45,10 @@
     transition: all 0.2s;
 }
 
+.loginContainer:has(button:hover) > img {
+    animation: logoSpin 4s ease-in-out infinite forwards;
+}
+
 .loginContainer > button:hover {
     background-color: rgb(216, 60, 60);
     color: whitesmoke;
@@ -65,5 +69,15 @@
 
     100% {
         scale: 1;
+    }
+}
+
+@keyframes logoSpin {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
     }
 }
