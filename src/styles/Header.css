@@ -3,6 +3,7 @@ header {
     background-color: rgba(0, 0, 0, 0.486);
     box-shadow: 0 0 5px black;
     display: flex;
+    align-items: center;
     padding: 1%;
     backdrop-filter: blur(4px);
     justify-content: space-between;
@@ -17,8 +18,52 @@ header > img {
     border: solid 2px whitesmoke;
 }
 
+header > div {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+}
+
+header > div > button {
+    background: none;
+    border: none;
+    color: whitesmoke;
+    cursor: pointer;
+    display: flex;
+    padding: 1%;
+    border-radius: 15px;
+    transition: all 0.2s;
+    border: solid 2px rgba(245, 245, 245, 0.767);
+    background-color: rgba(0, 0, 0, 0.438);
+    box-shadow: 0 0 5px rgb(34, 34, 34);
+    backdrop-filter: blur(5px);
+}
+
+header > div > button:hover {
+    background-color: rgba(26, 26, 26, 0.274);
+    transform: translateY(-2%);
+    box-shadow: 0 0 5px rgba(212, 212, 212, 0.418);
+}
+
+header > div > button:hover > span {
+    rotate: -4deg;
+}
+
+header > div > button > span{
+    font-size: 40px !important;
+    width: 100%;
+    margin: auto;
+    transition: all 0.2s;
+}
+
+header button {
+    overflow: hidden;
+    position: relative;
+}
+
 header > button {
     width: 10%;
+    padding: 1%;
     margin-right: 3%;
     cursor: pointer;
     font-size: medium;
@@ -26,11 +71,33 @@ header > button {
     border-radius: 10px;
     border: none;
     transition: all 0.2s;
+    background: none;
+    background-color: rgba(0, 0, 0, 0.438);
+    border: solid 2px rgba(245, 245, 245, 0.767);
+    box-shadow: 0 0 5px rgb(34, 34, 34);
+    color: whitesmoke;
+    backdrop-filter: blur(5px);
 }
 
 header > button:hover {
-    background-color: rgb(216, 60, 60);
+    background-color: rgba(26, 26, 26, 0.274);
     color: whitesmoke;
-    scale: 103%;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.418);
+    letter-spacing: 3px;
+    box-shadow: 0 0 5px rgba(212, 212, 212, 0.418);
+    transform: translateY(-2%);
+}
+
+header button:hover::after {
+    content: "";
+    position: absolute;
+    top: -170%;
+    left: -200%;
+    width: 200%;
+    height: 400%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.082) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.082) 100%);
+    opacity: 0.9;
+    transform: rotate(25deg);
+    backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to right ,transparent, black, transparent);
+    animation: glassReflection 2.5s ease-in-out infinite;
 }
