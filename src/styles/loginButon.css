@@ -15,7 +15,7 @@
 
 .loginContainer > img {
     width: 10vw;
-    filter: brightness(1000%);
+    mix-blend-mode: difference;
 }
 
 .loginContainer > h1 {
@@ -46,7 +46,7 @@
 }
 
 .loginContainer:has(button:hover) > img {
-    animation: logoSpin 4s ease-in-out infinite forwards;
+    animation: logoSpin 4s linear infinite forwards;
 }
 
 .loginContainer > button:hover {

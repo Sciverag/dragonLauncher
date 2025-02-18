@@ -1,0 +1,104 @@
+.gameContainer {
+    margin-top: auto;
+    margin-bottom: 6%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    overflow-x: scroll;
+    gap: 12px;
+    height: 400px;
+    align-items: end;
+}
+
+.gameBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s;
+    background-size: cover;
+    background-position: center;
+}
+
+.game {
+    flex: 1;
+    height: 250px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    min-width: 250px;
+    transition: all 0.2s;
+    padding: 2px;
+    margin-bottom: 1%;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.game:hover {
+    transform: translateY(-10%);
+    background: linear-gradient(90deg, transparent, transparent) padding-box,
+        linear-gradient(120deg, #8a8a8a, #8a8a8a, #ffffff, #8a8a8a) border-box;
+    animation: gradientBorder 3s infinite linear;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 300% 300%;
+    animation: animatedBorder 4s 1s linear infinite;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.459);
+    will-change: background-position;
+}
+
+.game:hover::after {
+    content: "";
+    position: absolute;
+    top: -170%;
+    left: -200%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.082) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.082) 100%);
+    opacity: 0.9;
+    transform: rotate(25deg);
+    backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to right ,transparent, black, transparent);
+    animation: glassReflection 3s ease-in-out infinite;
+}
+
+.game>img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+
+@keyframes animatedBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes glassReflection {
+    0% {
+        top: -170%;
+        left: -200%;
+    }
+
+    50% {
+        top: 0%;
+        left: 100%;
+    }
+
+    100% {
+        top: 100%;
+        left: 200%;
+    }
+}
