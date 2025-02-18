@@ -1,8 +1,7 @@
 .gameContainer {
     margin-top: auto;
-    margin-bottom: 6%;
+    margin-bottom: 3%;
     margin-left: 5%;
-    margin-right: 5%;
     display: flex;
     overflow-x: scroll;
     gap: 12px;
