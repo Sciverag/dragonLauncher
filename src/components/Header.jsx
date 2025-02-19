@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/Header.css';
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ setShowSearch }) => {
 
     const { user } = useAuth0();
     const { logout } = useAuth0();
@@ -23,13 +23,13 @@ const Header = () => {
             <img src={user.picture} alt={user.name} />
             <div>
                 <button onClick={changeOrder}>
-                    <span id="orderIcon" class="material-symbols-outlined">
+                    <span id="orderIcon" className="material-symbols-outlined">
                         cards
                     </span>
                 </button>
 
-                <button>
-                    <span class="material-symbols-outlined">
+                <button  onClick={() => setShowSearch((prev) => !prev)}>
+                    <span className="material-symbols-outlined">
                         manage_search
                     </span>
                 </button>

@@ -1,5 +1,4 @@
 header {
-    width: 100%;
     background-color: rgba(0, 0, 0, 0.486);
     box-shadow: 0 0 5px black;
     display: flex;
@@ -20,8 +19,11 @@ header > img {
 
 header > div {
     display: flex;
-    justify-content: space-evenly;
-    width: 40%;
+    gap: 20px;
+    width: 20%;
+    justify-content: end;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 header > div > button {
@@ -64,7 +66,6 @@ header button {
 header > button {
     width: 10%;
     padding: 1%;
-    margin-right: 3%;
     cursor: pointer;
     font-size: medium;
     font-family: "Sigmar", serif;

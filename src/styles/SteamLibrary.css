@@ -3,10 +3,18 @@
     margin-bottom: 3%;
     margin-left: 5%;
     display: flex;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 12px;
     height: 400px;
     align-items: end;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.gameContainer::-webkit-scrollbar {
+    display: none;
 }
 
 .gameBackground {
@@ -22,7 +30,6 @@
 }
 
 .game {
-    flex: 1;
     height: 250px;
     border-radius: 15px;
     position: relative;
@@ -59,7 +66,7 @@
     opacity: 0.9;
     transform: rotate(25deg);
     backdrop-filter: blur(1px);
-    mask-image: linear-gradient(to right ,transparent, black, transparent);
+    mask-image: linear-gradient(to right, transparent, black, transparent);
     animation: glassReflection 3s ease-in-out infinite;
 }
 
@@ -69,6 +76,106 @@
     border-radius: 15px;
     object-fit: cover;
     object-position: center;
+}
+
+.scroll-button {
+    position: absolute;
+    bottom: 13%;
+    transform: translateY(-50%);
+    border: solid 2px rgba(245, 245, 245, 0.767);
+    background-color: rgba(0, 0, 0, 0.438);
+    box-shadow: 0 0 5px rgb(34, 34, 34);
+    backdrop-filter: blur(5px);
+    color: white;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    line-height: 120%;
+    justify-content: center;
+    font-size: 50px;
+    z-index: 2;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.scroll-button:hover {
+    box-shadow: 0 0 5px rgba(212, 212, 212, 0.418);
+}
+
+.scroll-button:hover::after {
+    content: "";
+    position: absolute;
+    top: -170%;
+    left: -200%;
+    width: 200%;
+    height: 400%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.082) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.082) 100%);
+    opacity: 0.5;
+    transform: rotate(25deg);
+    backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to right, transparent, black, transparent);
+    animation: glassReflection 2.5s ease-in-out infinite;
+}
+
+.game-logo {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    transform: translateX(-50%);
+    max-width: 300px;
+    opacity: 0;
+    animation: fadeIn 0.6s linear forwards;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.644));
+}
+
+.left {
+    left: 10px;
+}
+
+.right {
+    right: 10px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.7%;
+    font-size: 20px;
+    margin: 10px auto;
+    border: 2px solid rgba(255, 255, 255, 0.815);
+    border-radius: 10px;
+    outline: none;
+    color: whitesmoke;
+    background-color: rgba(15, 15, 15, 0.678);
+    transition: all 0.3s ease-in-out;
+    animation: inputSpawn 0.5s ease forwards;
+  }
+
+
+@keyframes inputSpawn {
+    0% {
+        opacity: 0;
+        transform: translateY(-200%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }
 
 @keyframes animatedBorder {
