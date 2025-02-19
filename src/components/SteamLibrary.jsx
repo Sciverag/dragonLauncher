@@ -54,11 +54,11 @@ const SteamLibrary = ({ showSearch }) => {
     setHoveredGame(game.appid);
 
     const logoUrl = `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/logo.png`;
-    
+
     try {
       const response = await fetch(logoUrl);
       if (response.ok) {
-        setGameLogo(null); 
+        setGameLogo(null);
         setTimeout(() => {
           setGameLogo(logoUrl);
         }, 1);
@@ -72,7 +72,7 @@ const SteamLibrary = ({ showSearch }) => {
 
   return (
     <>
-    {showSearch && (
+      {showSearch && (
         <input
           type="text"
           className="search-input"

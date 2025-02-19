@@ -10,7 +10,7 @@ body {
   min-height: 100vh;
   background: linear-gradient(-45deg, #e7a62d, #cc1c1c, #d63586, #36d6e2, #4ae236);
 	background-size: 400% 400%;
-	animation: gradient 14s ease infinite reverse;
+	animation: gradient 14s ease infinite alternate-reverse;
 }
 
 #root {
