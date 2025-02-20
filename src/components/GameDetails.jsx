@@ -2,12 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../styles/GameDetails.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const steamApiKey = process.env.REACT_APP_STEAM_API_KEY;
 const steamId = process.env.REACT_APP_STEAM_ID;
 
 const GameDetails = () => {
     const { appid } = useParams();
+    const { isAuthenticated } = useAuth0();
     const [gameDetails, setGameDetails] = useState(null);
     const [playtime, setPlaytime] = useState(null);
     const [achievements, setAchievements] = useState(null);
@@ -20,101 +22,105 @@ const GameDetails = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchGameDetails = async () => {
-            try {
-                const response = await axios.get(`https://store.steampowered.com/api/appdetails?appids=${appid}`);
-                if (response.data[appid].success) {
-                    const data = response.data[appid].data;
-                    setGameDetails(data);
-                    setDetailedDescription(data.detailed_description);
-
-                    if (data.movies && data.movies.length > 0) {
-                        setTrailerUrl(data.movies[0].webm.max || data.movies[0].mp4.max);
+        if(isAuthenticated){
+            const fetchGameDetails = async () => {
+                try {
+                    const response = await axios.get(`https://store.steampowered.com/api/appdetails?appids=${appid}`);
+                    if (response.data[appid].success) {
+                        const data = response.data[appid].data;
+                        setGameDetails(data);
+                        setDetailedDescription(data.detailed_description);
+    
+                        if (data.movies && data.movies.length > 0) {
+                            setTrailerUrl(data.movies[0].webm.max || data.movies[0].mp4.max);
+                        }
                     }
+                } catch (error) {
+                    console.error("Error obteniendo detalles del juego:", error);
                 }
-            } catch (error) {
-                console.error("Error obteniendo detalles del juego:", error);
-            }
-        };
-
-        const fetchPlaytime = async () => {
-            try {
-                const response = await axios.get("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/", {
-                    params: {
-                        key: steamApiKey,
-                        steamid: steamId,
-                        include_appinfo: false,
-                    },
-                });
-
-                const games = response.data.response.games || [];
-                const game = games.find((g) => g.appid.toString() === appid);
-
-                if (game) {
-                    const minutes = game.playtime_forever || 0;
-                    const hours = Math.floor(minutes / 60);
-                    const mins = minutes % 60;
-                    setPlaytime(`${hours}h ${mins}m`);
-                } else {
-                    setPlaytime("Never Played");
+            };
+    
+            const fetchPlaytime = async () => {
+                try {
+                    const response = await axios.get("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/", {
+                        params: {
+                            key: steamApiKey,
+                            steamid: steamId,
+                            include_appinfo: false,
+                        },
+                    });
+    
+                    const games = response.data.response.games || [];
+                    const game = games.find((g) => g.appid.toString() === appid);
+    
+                    if (game) {
+                        const minutes = game.playtime_forever || 0;
+                        const hours = Math.floor(minutes / 60);
+                        const mins = minutes % 60;
+                        setPlaytime(`${hours}h ${mins}m`);
+                    } else {
+                        setPlaytime("Never Played");
+                    }
+                } catch (error) {
+                    console.error("Error obteniendo tiempo jugado:", error);
                 }
-            } catch (error) {
-                console.error("Error obteniendo tiempo jugado:", error);
-            }
-        };
-
-        const fetchAchievements = async () => {
-            try {
-                const response = await axios.get("https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/", {
-                    params: {
-                        key: steamApiKey,
-                        steamid: steamId,
-                        appid: appid,
-                    },
-                });
-
-                const data = response.data.playerstats;
-
-                if (data.success) {
-                    const totalAchievements = data.achievements.length;
-                    const unlockedAchievements = data.achievements.filter((ach) => ach.achieved === 1).length;
-
-                    const percentage = (unlockedAchievements / totalAchievements) * 100;
-
-                    let newColor = "#cd7f32"; 
-                    if (percentage > 25) newColor = "#c0c0c0"; 
-                    if (percentage > 50) newColor = "#ffd700"; 
-                    if (percentage === 100) newColor = "#0094ff";
-
-                    setTrophyColor(newColor);
-
-                    setAchievements({ unlocked: unlockedAchievements, total: totalAchievements });
+            };
+    
+            const fetchAchievements = async () => {
+                try {
+                    const response = await axios.get("https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/", {
+                        params: {
+                            key: steamApiKey,
+                            steamid: steamId,
+                            appid: appid,
+                        },
+                    });
+    
+                    const data = response.data.playerstats;
+    
+                    if (data.success) {
+                        const totalAchievements = data.achievements.length;
+                        const unlockedAchievements = data.achievements.filter((ach) => ach.achieved === 1).length;
+    
+                        const percentage = (unlockedAchievements / totalAchievements) * 100;
+    
+                        let newColor = "#cd7f32"; 
+                        if (percentage > 25) newColor = "#c0c0c0"; 
+                        if (percentage > 50) newColor = "#ffd700"; 
+                        if (percentage === 100) newColor = "#daf8ff";
+    
+                        setTrophyColor(newColor);
+    
+                        setAchievements({ unlocked: unlockedAchievements, total: totalAchievements });
+                    }
+                } catch (error) {
+                    console.error("Error obteniendo logros:", error);
                 }
-            } catch (error) {
-                console.error("Error obteniendo logros:", error);
-            }
-        };
-
-        const checkLogoExists = async () => {
-            const url = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/logo.png`;
-
-            try {
-                const response = await fetch(url);
-                if (response.ok) {
-                    setLogoUrl(url);
-                } else {
+            };
+    
+            const checkLogoExists = async () => {
+                const url = `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/logo.png`;
+    
+                try {
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        setLogoUrl(url);
+                    } else {
+                        setLogoUrl(null);
+                    }
+                } catch {
                     setLogoUrl(null);
                 }
-            } catch {
-                setLogoUrl(null);
-            }
-        };
-
-        fetchGameDetails();
-        fetchPlaytime();
-        fetchAchievements();
-        checkLogoExists();
-        console.log(gameDetails);
+            };
+    
+            fetchGameDetails();
+            fetchPlaytime();
+            fetchAchievements();
+            checkLogoExists();
+        }else{
+            navigate('/');
+        }
+        
     }, [appid]);
 
     useEffect(() => {

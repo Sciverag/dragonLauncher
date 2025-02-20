@@ -160,15 +160,20 @@
     margin-right: 3%;
     font-size: x-large;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     width: fit-content;
     flex-wrap: nowrap;
     min-width: 120px;
     padding: 0.5%;
     border-radius: 10px;
+
     background-color: rgba(0, 0, 0, 0.699);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.623);
     color: whitesmoke;
+    backdrop-filter: blur(4px);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
   }
 
   .achievements > span {
@@ -176,5 +181,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 3%;
   }
