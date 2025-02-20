@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import '../styles/SteamLibrary.css';
+import { useNavigate } from "react-router-dom";
 
 const steamApiKey = process.env.REACT_APP_STEAM_API_KEY;
 const steamId = process.env.REACT_APP_STEAM_ID;
@@ -29,6 +30,7 @@ const SteamLibrary = ({ showSearch }) => {
   const [gameLogo, setGameLogo] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
 
 
 
@@ -46,7 +48,7 @@ const SteamLibrary = ({ showSearch }) => {
     }
   };
 
-  const filteredGames = games.filter((game) =>
+  const filteredGames = games.sort((a, b) => b.rtime_last_played - a.rtime_last_played).filter((game) =>
     game.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -68,6 +70,10 @@ const SteamLibrary = ({ showSearch }) => {
     } catch (error) {
       setGameLogo(null);
     }
+  };
+
+  const handleGameClick = (appid) => {
+    navigate(`/game/${appid}`);
   };
 
   return (
@@ -94,6 +100,7 @@ const SteamLibrary = ({ showSearch }) => {
           return (
             <div className="game" key={game.appid}
               onMouseEnter={() => handleMouseEnter(game)}
+              onClick={() => handleGameClick(game.appid)}
             >
               <img
                 src={coverUrl}

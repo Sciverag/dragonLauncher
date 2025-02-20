@@ -1,0 +1,180 @@
+  .game-background {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+  }
+
+  .background-gradient {
+      z-index: -1;
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-image: linear-gradient(to right, black 20%, transparent);
+  }
+
+  .game-logo-Details {
+      width: 500px;
+      align-self: center;
+      margin-left: 5%;
+      grid-column: 1;
+      grid-row: 1;
+      color: white;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      letter-spacing: 2px;
+      font-weight: normal;
+      font-size: 50px;
+      filter: drop-shadow(0 0 5px grey);
+  }
+
+  .game-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 2fr;
+      height: 100vh;
+  }
+
+  .game-container {
+      grid-column: 1;
+      grid-row: 2;
+      margin-left: 7%;
+      font-size: xx-large;
+  }
+
+  .game-container > p {
+    color: gray;
+    margin-bottom: 3%;
+  }
+
+  .game-container > p > strong{
+    color: rgb(218, 218, 218);
+  }
+
+  .game-trailer {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: end;
+      height: fit-content;
+      margin-left: auto;
+      margin-right: 5%;
+      margin-bottom: 5%;
+      width: 700px;
+  }
+
+  .action-buttons {
+      display: flex;
+      font-size: large !important;
+      gap: 10px;
+      margin-top: 6%;
+  }
+
+  .action-buttons>* {
+      background: none;
+      border: none;
+      overflow: hidden;
+      color: whitesmoke;
+      cursor: pointer;
+      display: flex;
+      width: 100px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: normal;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: larger !important;
+      text-decoration: none;
+      padding: 1%;
+      border-radius: 15px;
+      transition: all 0.2s;
+      border: solid 2px rgba(245, 245, 245, 0.767);
+      background-color: rgba(0, 0, 0, 0.438);
+      box-shadow: 0 0 5px rgb(34, 34, 34);
+      backdrop-filter: blur(5px);
+  }
+
+  .action-buttons>*:hover {
+      background-color: rgba(26, 26, 26, 0.274);
+      transform: translateY(-2%);
+      box-shadow: 0 0 5px rgba(212, 212, 212, 0.418);
+  }
+
+  .action-buttons > *:hover::after {
+    content: "";
+    position: absolute;
+    top: -170%;
+    left: -200%;
+    width: 200%;
+    height: 400%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.082) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.082) 100%);
+    opacity: 0.9;
+    transform: rotate(25deg);
+    backdrop-filter: blur(1px);
+    mask-image: linear-gradient(to right ,transparent, black, transparent);
+    animation: glassReflection 2.5s ease-in-out infinite;
+}
+
+  .game-trailer>* {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 5px black;
+  }
+
+  .game-description {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 5%;
+    height: 40vh;
+    max-width: 50vw;
+    color: rgb(182, 182, 182);
+  }
+
+  .game-description::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .game-description img {
+    max-width: 50vw;
+  }
+
+  .game-description > *:is(h1,h2,h3,h4,h5,h6) {
+    color: gainsboro;
+    font-weight: normal;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+
+  .game-description > *:is(strong){
+    color: gainsboro;
+  }
+
+  .achievements {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 2%;
+    margin-right: 3%;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    flex-wrap: nowrap;
+    min-width: 120px;
+    padding: 0.5%;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.699);
+    color: whitesmoke;
+  }
+
+  .achievements > span {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3%;
+  }
