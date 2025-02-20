@@ -113,13 +113,14 @@ const SteamLibrary = ({ showSearch }) => {
             </div>
           );
         })}
-        <div className="gameBackground"
-          style={{
-            backgroundImage: hoveredGame
-              ? `url(https://cdn.akamai.steamstatic.com/steam/apps/${hoveredGame}/library_hero.jpg), url(https://cdn.akamai.steamstatic.com/steam/apps/${hoveredGame}/page_bg_generated_v6b.jpg)`
-              : "none",
-          }}></div>
+
       </div>
+      <div className="gameBackground"
+        style={{
+          backgroundImage: hoveredGame
+            ? `url(https://cdn.akamai.steamstatic.com/steam/apps/${hoveredGame}/library_hero.jpg), url(https://cdn.akamai.steamstatic.com/steam/apps/${hoveredGame}/page_bg_generated_v6b.jpg)`
+            : "none",
+        }}></div>
     </>
   );
 };

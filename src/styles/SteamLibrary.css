@@ -15,6 +15,7 @@
     background-size: 5% 300px;
     background-repeat: no-repeat;
     background-position: right bottom;
+    animation: librarySpawn 0.7s ease;
 }
 
 .gameContainer::-webkit-scrollbar {
@@ -223,5 +224,15 @@
     100% {
         top: 100%;
         left: 200%;
+    }
+}
+
+@keyframes librarySpawn {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }

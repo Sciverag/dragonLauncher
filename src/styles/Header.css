@@ -8,6 +8,7 @@ header {
     justify-content: space-between;
     border-bottom: solid 2px whitesmoke;
     transition: all 0.3s ease-in-out;
+    animation: headerSpawn 0.7s ease;
 }
 
 header > img {
@@ -101,4 +102,14 @@ header button:hover::after {
     backdrop-filter: blur(1px);
     mask-image: linear-gradient(to right ,transparent, black, transparent);
     animation: glassReflection 2.5s ease-in-out infinite;
+}
+
+@keyframes headerSpawn {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }

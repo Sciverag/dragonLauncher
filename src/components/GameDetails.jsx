@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import "../styles/GameDetails.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import AchievementsModal from "./AchievementsModal";
 
 const steamApiKey = process.env.REACT_APP_STEAM_API_KEY;
 const steamId = process.env.REACT_APP_STEAM_ID;
@@ -18,6 +19,7 @@ const GameDetails = () => {
     const [logoUrl, setLogoUrl] = useState(null);
     const [isMuted, setIsMuted] = useState(true);
     const [detailedDescription, setDetailedDescription] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); 
     const videoRef = useRef(null);
     const navigate = useNavigate();
 
@@ -184,7 +186,7 @@ const GameDetails = () => {
 
                     <div className="action-buttons">
                         <a href={`steam://rungameid/${appid}`} className="play-button">Play</a>
-                        {achievements && (<button className="icon-button"><span class="material-symbols-outlined">trophy</span></button>)}
+                        {achievements && (<button className="icon-button" onClick={() => setIsModalOpen(true)}><span class="material-symbols-outlined">trophy</span></button>)}
                         {trailerUrl && (<button className="icon-button" onClick={toggleMute}><span id="buttonMute" class="material-symbols-outlined">volume_off</span></button>)}
                     </div>
 
@@ -201,6 +203,8 @@ const GameDetails = () => {
                     )}
                 </div>
             </div>
+
+            {isModalOpen && <AchievementsModal appid={appid} onClose={() => setIsModalOpen(false)} />}
         </div>
     );
 };
