@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## IMPORTANT
+
+For the project to work you must create a .env file with your Steam API Key and your
+Steam User ID in it.
+
 ## Available Scripts
 
 In the project directory, you can run:
